@@ -2,7 +2,7 @@
   "name": "shopping-buddy-api",
   "version": "0.1.0",
   "description": "A TypeScript starter for Serverless Framework",
-  "main": "handler.js",
+  "main": "create.js",
   "scripts": {
     "test": "serverless-bundle test"
   },
