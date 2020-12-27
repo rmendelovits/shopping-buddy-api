@@ -46,6 +46,11 @@ provider:
         - dynamodb:DescribeTable
       Resource: "arn:aws:dynamodb:us-east-2:*:*"
 
+  # Create our resources with separate CloudFormation templates
+  resources:
+    # API Gateway Errors
+    - ${file(resources/api-gateway-errors.yml)}
+
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
   # - path: url path is /carts
@@ -56,6 +61,7 @@ functions:
       - http:
           path: carts
           method: post
+          cors: true
           authorizer: aws_iam
   get:
     # Defines an HTTP API endpoint that calls the main function in get.js
@@ -66,6 +72,7 @@ functions:
       - http:
           path: carts/{id}
           method: get
+          cors: true
           authorizer: aws_iam
   list:
     # Defines an HTTP API endpoint that calls the main function in list.js
@@ -76,6 +83,7 @@ functions:
       - http:
           path: carts
           method: get
+          cors: true
           authorizer: aws_iam
   update:
     # Defines an HTTP API endpoint that calls the main function in update.js
@@ -86,6 +94,7 @@ functions:
       - http:
           path: carts/{id}
           method: put
+          cors: true
           authorizer: aws_iam
   delete:
     # Defines an HTTP API endpoint that calls the main function in delete.js
@@ -96,6 +105,7 @@ functions:
       - http:
           path: carts/{id}
           method: delete
+          cors: true
           authorizer: aws_iam
   billing:
     # Defines an HTTP API endpoint that calls the main function in billing.js
@@ -106,4 +116,5 @@ functions:
       - http:
           path: billing
           method: post
+          cors: true
           authorizer: aws_iam
